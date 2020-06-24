@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ConvertItem from './ConvertItem';
-import '../style/main.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default class GroceryHelper extends Component {
   constructor(props) {

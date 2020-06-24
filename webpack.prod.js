@@ -1,6 +1,12 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const path = require('path');
 
 module.exports = merge(common, {
-  mode: 'production'
+  mode: 'production',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'main.[hash].js',
+    chunkFilename: '[name].[chunkhash].js'
+  },
 });

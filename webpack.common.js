@@ -1,14 +1,10 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.jsx',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js'
-  },
   module: {
     rules: [
       {
@@ -21,7 +17,10 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader' // Turn CSS into JS, run first
+        ]
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -29,7 +28,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              name: '[name].[ext]'
             }
           }
         ]
@@ -40,10 +39,26 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         default: false,
-        commons: {
+        // chunk with name vendor
+        vendor: {
+          // sync + async chunks
           chunks: 'all',
           name: 'vendor',
           test: /[\\/]node_modules[\\/]/
+        },
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.css$/,
+        //   chunks: 'all',
+        //   enforce: true
+        // },
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'async',
+          priority: 10,
+          reuseExistingChunk: true,
+          enforce: true
         }
       }
     }
@@ -52,8 +67,9 @@ module.exports = {
     extensions: ['.mjs', '.js', '.jsx']
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ inject: true, template: './src/index.html' })
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({ inject: true, template: './src/index.html' }),
+    new MiniCssExtractPlugin()
   ]
 };
