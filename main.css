@@ -1,0 +1,14 @@
+.grocery-row {
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grocery-row-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.grocery-row-item input {
+  border: 1px solid
+}
