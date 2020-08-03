@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style/main.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Convert from './components/Convert';
+import ConvertRow from './components/ConvertRow';
 
 export default class GroceryHelper extends Component {
   constructor(props) {
@@ -12,7 +12,8 @@ export default class GroceryHelper extends Component {
     return (
       <React.Fragment>
         <h2>Grocery Helper</h2>
-        <Convert />
+        <ConvertRow />
+        <ConvertRow />
       </React.Fragment>
     );
   }

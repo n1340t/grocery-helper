@@ -13,7 +13,7 @@ function debounce(func, wait) {
     }, wait);
   };
 }
-export default class GroceryHelper extends Component {
+export default class ConvertRow extends Component {
   constructor(props) {
     super(props);
     this.constLbAndKg = 2.205;
@@ -57,18 +57,21 @@ export default class GroceryHelper extends Component {
   }
   render() {
     return (
-      <div className='grocery-row'>
-        <ConvertItem
-          name='$ per lb'
-          price={this.state.price.lb}
-          onChangeInputPrice={this.debouncedFn}
-        />
-        <i className='fas fa-arrows-alt-h fa-lg'></i>
-        <ConvertItem
-          name='$ per kg'
-          price={this.state.price.kg}
-          onChangeInputPrice={this.debouncedFn}
-        />
+      <div className="grocery-row">
+        <p>Beef at Walmart</p>
+        <div className='grocery-row-convert'>
+          <ConvertItem
+            name='$ per lb'
+            price={this.state.price.lb}
+            onChangeInputPrice={this.debouncedFn}
+          />
+          <i className='fas fa-arrows-alt-h fa-lg'></i>
+          <ConvertItem
+            name='$ per kg'
+            price={this.state.price.kg}
+            onChangeInputPrice={this.debouncedFn}
+          />
+        </div>
       </div>
     );
   }
