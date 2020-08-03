@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development', // "production" | "development" | "none"
   entry: './src/main.jsx',
   output: {
-    path: path.resolve(__dirname, './static'),
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js'
   },
   module: {
@@ -38,7 +38,7 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, './static'),
+    contentBase: path.resolve(__dirname, './dist'),
     //inline is true by default,
     hot: true,
     open: true,
