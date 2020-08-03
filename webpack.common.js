@@ -1,9 +1,9 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development', // "production" | "development" | "none"
   entry: './src/main.jsx',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -36,17 +36,6 @@ module.exports = {
       }
     ]
   },
-  devtool: 'eval-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
-    //inline is true by default,
-    hot: true,
-    open: true,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
-  },
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -63,6 +52,7 @@ module.exports = {
     extensions: ['.mjs', '.js', '.jsx']
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ inject: true, template: './src/index.html' })
   ]
