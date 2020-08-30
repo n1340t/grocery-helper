@@ -12,7 +12,7 @@ export default class ConvertItem extends Component {
         <input
           type='text'
           onChange={this.props.onChangeInputPrice}
-          value={this.props.price}
+          value={this.props.price} // Controlled Component the input value is driven by react state (props), it also mean dispalyed value is updated when setState set new state
           name={this.props.name}
         ></input>
       </div>
