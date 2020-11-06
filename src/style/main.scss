@@ -1,5 +1,7 @@
+$color: antiquewhite;
+$color1: pink;
 .grocery-row {
-  background-color: antiquewhite;
+  background-color: $color1;
 }
 .grocery-row p {
   font-size: large;

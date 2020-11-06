@@ -13,14 +13,26 @@ module.exports = {
         exclude: /node_modules/,
         // Skip any files outside of your project's `src` directory
         // include: [path.resolve(__dirname, 'src')],
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader' // Turn CSS into JS, run first
-        ]
+          'css-loader', // , run first
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          // Creates `style` nodes from JS strings
+          // 'style-loader',
+          // Translates CSS into CommonJS, Turn CSS into JS
+          'css-loader',
+          // Compiles Sass to CSS, Run first
+          'sass-loader',
+        ],
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -28,12 +40,12 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+    ],
   },
   optimization: {
     splitChunks: {
@@ -44,7 +56,7 @@ module.exports = {
           // sync + async chunks
           chunks: 'all',
           name: 'vendor',
-          test: /[\\/]node_modules[\\/]/
+          test: /[\\/]node_modules[\\/]/,
         },
         // styles: {
         //   name: 'styles',
@@ -58,18 +70,17 @@ module.exports = {
           chunks: 'async',
           priority: 10,
           reuseExistingChunk: true,
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.jsx']
+    extensions: ['.mjs', '.js', '.jsx'],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ inject: true, template: './src/index.html' }),
-    new MiniCssExtractPlugin()
-  ]
+    new MiniCssExtractPlugin(),
+  ],
 };

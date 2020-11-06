@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/main.css';
+import './style/main.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import CalculatorV2 from './components/CalculatorV2';
 
