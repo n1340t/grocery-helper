@@ -1,55 +1,62 @@
 import React, { Component } from 'react';
 import CalcInput from './CalcInput';
+import { scaleEnum } from '../config/config';
 
-const constLbAndKg = 2.205;
-function toKilogram(priceInPound) {
-  return priceInPound * constLbAndKg;
-}
-function toPound(priceInKg) {
-  return priceInKg / constLbAndKg;
-}
-function tryConvert(price, convert) {
-  const input = parseFloat(price);
-  if (Number.isNaN(input)) {
-    return '';
-  }
-  const output = convert(input);
-  const fixed = output.toFixed(3);
-  return fixed.toString();
+function formatPrice(price) {
+  return price.toFixed(2);
 }
 export default class Calculator extends Component {
   constructor(props) {
     super(props);
-    this.handlePoundChange = this.handlePoundChange.bind(this);
-    this.handleKilogramChange = this.handleKilogramChange.bind(this);
-    this.state = { price: '', scale: 'lb' };
+    this.handleUnitChnage = this.handleUnitChnage.bind(this);
+    this.weight = {
+      lb: 1 / 2.205, // centralize to kg
+      kg: 1,
+    };
+    this.state = {
+      scaleLeft: 'lb',
+      scaleFrom: 'lb',
+      scaleRight: 'kg',
+      scaleTo: 'kg',
+      price: 0,
+    };
   }
-  handlePoundChange(price) {
-    this.setState({ scale: 'lb', price });
-  }
-
-  handleKilogramChange(price) {
-    this.setState({ scale: 'kg', price });
+  handleUnitChnage(scaleFrom, scaleTo, price) {
+    this.setState({ scaleFrom, scaleTo, price });
   }
   render() {
-    const scale = this.state.scale;
-    const price = this.state.price;
-    const pricePerLb = scale === 'kg' ? tryConvert(price, toKilogram) : price;
-    const pricePerKg = scale === 'lb' ? tryConvert(price, toPound) : price;
+    const scaleLeft = this.state.scaleLeft;
+    const scaleFrom = this.state.scaleFrom;
+    const scaleTo = this.state.scaleTo;
+    const price = this.state.price; // bug here priceFrom always = price
+    let priceLeft, priceRight;
+    if (scaleLeft === scaleFrom) {
+      priceLeft = price;
+      priceRight = formatPrice(
+        (price * this.weight[scaleFrom]) / this.weight[scaleTo]
+      );
+    } else {
+      priceLeft = formatPrice(
+        (price * this.weight[scaleFrom]) / this.weight[scaleTo]
+      );
+      priceRight = price;
+    }
     return (
       <div className='grocery-row'>
         <p>Beef at Walmart</p>
         <div className='grocery-row-convert'>
           <CalcInput
-            scale='lb'
-            price={pricePerLb}
-            onPriceChange={this.handlePoundChange}
+            scaleFrom={scaleEnum.LB} // this value will be get from drop box to make it more generic
+            scaleTo={scaleEnum.KG}
+            price={priceLeft}
+            onPriceChange={this.handleUnitChnage}
           />
           <i className='fas fa-arrows-alt-h fa-lg'></i>
           <CalcInput
-            scale='kg'
-            price={pricePerKg}
-            onPriceChange={this.handleKilogramChange}
+            scaleFrom={scaleEnum.KG}
+            scaleTo={scaleEnum.LB}
+            price={priceRight}
+            onPriceChange={this.handleUnitChnage}
           />
         </div>
       </div>

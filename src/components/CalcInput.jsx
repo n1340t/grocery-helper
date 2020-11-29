@@ -8,12 +8,16 @@ export default class CalcInput extends Component {
   }
 
   handleChange(e) {
-    this.props.onPriceChange(e.target.value);
+    this.props.onPriceChange(
+      this.props.scaleFrom,
+      this.props.scaleTo,
+      e.target.value
+    );
   }
 
   render() {
     const price = this.props.price;
-    const scale = this.props.scale;
+    const scale = this.props.scaleFrom;
     return (
       <div className='grocery-row-item'>
         <label>{scaleNames[scale]}</label>
