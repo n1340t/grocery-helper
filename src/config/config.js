@@ -1,9 +1,17 @@
 const scaleEnum = Object.freeze({
-  LB: 'lb',
-  KG: 'kg',
+  LB: 'LB',
+  KG: 'KG',
 });
-const scaleNames = {
-  lb: '$ per lb',
-  kg: '$ per kg',
+const weight = {
+  LB: 1 / 2.205, // centralize to kg
+  KG: 1,
 };
-export { scaleEnum, scaleNames };
+const eqSides = {
+  LEFT: 'LHS',
+  RIGHT: 'RHS',
+};
+const scaleNames = {
+  LB: '$ per lb',
+  KG: '$ per kg',
+};
+export { scaleEnum, weight, eqSides, scaleNames };

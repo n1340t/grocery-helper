@@ -24,3 +24,10 @@ $color1: pink;
   width: 100%;
   font-size: large;
 }
+.grocery-row-item * {
+  padding: 5px;
+  margin: 5px;
+}
+.grocery-row-item select {
+  width: 50%;
+}

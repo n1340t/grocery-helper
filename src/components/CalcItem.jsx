@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../style/main.css';
 
 export default class CalcItem extends Component {
   constructor(props) {
