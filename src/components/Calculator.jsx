@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-import ConvertItem from './ConvertItem';
+import CalcItem from './CalcItem';
+import { debounce } from '../utils/helper';
 
-function debounce(func, wait) {
-  let timeout;
-  return function (...args) {
-    const context = this;
-    // console.log('>>>',func, context, timeout, args);
-    // args[0].persist();
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      return func.apply(context, args);
-    }, wait);
-  };
-}
-export default class GroceryHelper extends Component {
+export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.constLbAndKg = 2.205;
@@ -58,17 +47,20 @@ export default class GroceryHelper extends Component {
   render() {
     return (
       <div className='grocery-row'>
-        <ConvertItem
-          name='$ per lb'
-          price={this.state.price.lb}
-          onChangeInputPrice={this.debouncedFn}
-        />
-        <i className='fas fa-arrows-alt-h fa-lg'></i>
-        <ConvertItem
-          name='$ per kg'
-          price={this.state.price.kg}
-          onChangeInputPrice={this.debouncedFn}
-        />
+        <p>Beef at Walmart</p>
+        <div className='grocery-row-convert'>
+          <CalcItem
+            name='$ per lb'
+            price={this.state.price.lb}
+            onChangeInputPrice={this.debouncedFn}
+          />
+          <i className='fas fa-arrows-alt-h fa-lg'></i>
+          <CalcItem
+            name='$ per kg'
+            price={this.state.price.kg}
+            onChangeInputPrice={this.debouncedFn}
+          />
+        </div>
       </div>
     );
   }

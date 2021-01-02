@@ -11,7 +11,7 @@ ReactDOM.render(<App />, contentNode);
 //Native Module hot accept api not work
 if (module.hot) {
   module.hot.accept('./App.jsx', function() {
-    console.log('Accepting change from App js');
+    console.log('Accepting change from App.jsx');
     ReactDOM.unmountComponentAtNode(contentNode);
     ReactDOM.render(<App />, contentNode);
   });

@@ -1,0 +1,33 @@
+$color: antiquewhite;
+$color1: pink;
+.grocery-row {
+  background-color: $color1;
+}
+.grocery-row p {
+  font-size: large;
+  margin-bottom: 0;
+}
+.grocery-row-convert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grocery-row-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-size: large;
+}
+.grocery-row-item input {
+  border: 1px solid;
+  width: 100%;
+  font-size: large;
+}
+.grocery-row-item * {
+  padding: 5px;
+  margin: 5px;
+}
+.grocery-row-item select {
+  width: 50%;
+}
