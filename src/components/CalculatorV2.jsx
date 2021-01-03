@@ -32,12 +32,12 @@ export default class Calculator extends Component {
     };
   }
   handleScaleChange(side, changedScale) {
+    const currentLeftScale = this.state.scaleLeft;
+    const currentLeftPrice = this.state.priceLeft;
+    const currentRightScale = this.state.scaleRight;
+    const currentRightPrice = this.state.priceRight;
     if (side === eqSides.LEFT) {
       if (changedScale === this.state.scaleRight) {
-        // swap scale
-        const currentLeftScale = this.state.scaleLeft;
-        const currentLeftPrice = this.state.priceLeft;
-        const currentRightScale = this.state.scaleRight;
         const { priceLeft, priceRight } = convertPrice(
           side,
           currentRightScale,
@@ -53,10 +53,6 @@ export default class Calculator extends Component {
       }
     } else {
       if (changedScale === this.state.scaleLeft) {
-        // swap scale
-        const currentLeftScale = this.state.scaleLeft;
-        const currentRightScale = this.state.scaleRight;
-        const currentRightPrice = this.state.priceRight;
         const { priceLeft, priceRight } = convertPrice(
           side,
           currentLeftScale,
@@ -91,7 +87,7 @@ export default class Calculator extends Component {
 
     return (
       <div className='grocery-row'>
-        <p>Beef at Walmart</p>
+        <p>{this.props.title}</p>
         <div className='grocery-row-convert'>
           <CalcInput
             scale={scaleLeft}
