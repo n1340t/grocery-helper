@@ -2,6 +2,7 @@ $color: antiquewhite;
 $color1: pink;
 .grocery-row {
   background-color: $color1;
+  margin: 10px 0 10px 0;
 }
 .grocery-row p {
   font-size: large;
@@ -30,4 +31,24 @@ $color1: pink;
 }
 .grocery-row-item select {
   width: 50%;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  margin-top: 0;
+  padding: 5px;
+}
+.title::first-letter {
+  text-transform: capitalize;
+}
+.delete {
+  padding: 10px;
+}
+.padding {
+  padding: 5px;
+}
+.btn--submit__margin {
+  margin-left: 5%;
 }

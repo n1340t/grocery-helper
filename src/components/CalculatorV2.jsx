@@ -21,6 +21,8 @@ function convertPrice(side, scaleLeft, scaleRight, price) {
 export default class Calculator extends Component {
   constructor(props) {
     super(props);
+    this.swapScale = this.swapScale.bind(this);
+    this.deleteCalc = this.deleteCalc.bind(this);
     this.handleScaleChange = this.handleScaleChange.bind(this);
     this.handleUnitChnage = debounce(this.handleUnitChnage, 100).bind(this);
     this.firstScale = Object.keys(scaleEnum)[0];
@@ -30,6 +32,18 @@ export default class Calculator extends Component {
       scaleRight: scaleEnum.KG,
       priceRight: 0,
     };
+  }
+  swapScale() {
+    const { scaleLeft, scaleRight, priceLeft, priceRight } = this.state;
+    this.setState({
+      scaleLeft: scaleRight,
+      priceLeft: priceRight,
+      scaleRight: scaleLeft,
+      priceRight: priceLeft,
+    });
+  }
+  deleteCalc() {
+    this.props.handleClickDelete(this.props.identifier);
   }
   handleScaleChange(side, changedScale) {
     const currentLeftScale = this.state.scaleLeft;
@@ -84,10 +98,15 @@ export default class Calculator extends Component {
     const scaleRight = this.state.scaleRight;
     let priceLeft = this.state.priceLeft;
     let priceRight = this.state.priceRight;
-
     return (
       <div className='grocery-row'>
-        <p>{this.props.title}</p>
+        <div className='row'>
+          <p className='title'>{this.props.title}</p>
+          <i
+            onClick={this.deleteCalc}
+            className='delete fas fa-times fa-lg'
+          ></i>
+        </div>
         <div className='grocery-row-convert'>
           <CalcInput
             scale={scaleLeft}
@@ -96,7 +115,7 @@ export default class Calculator extends Component {
             onSelectChange={this.handleScaleChange}
             onPriceChange={this.handleUnitChnage}
           />
-          <i className='fas fa-arrows-alt-h fa-lg'></i>
+          <i onClick={this.swapScale} className='fas fa-arrows-alt-h fa-lg'></i>
           <CalcInput
             scale={scaleRight}
             price={priceRight}
