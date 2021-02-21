@@ -14,6 +14,4 @@ const scaleNames = {
   LB: '$ per lb',
   KG: '$ per kg',
 };
-export {
-  scaleEnum, weight, eqSides, scaleNames,
-};
+export { scaleEnum, weight, eqSides, scaleNames };
