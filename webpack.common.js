@@ -1,4 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -79,6 +80,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new ESLintPlugin({
+      formatter: 'table',
+    }),
     new HtmlWebpackPlugin({ inject: true, template: './src/index.html' }),
     new MiniCssExtractPlugin(),
   ],

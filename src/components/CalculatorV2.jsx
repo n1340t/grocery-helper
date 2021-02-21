@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CalcInput from './CalcInput';
 import { scaleEnum, weight, eqSides } from '../config/config';
-import { debounce } from '../utils/helper';
+import debounce from '../utils/helper';
 
 function formatPrice(price) {
   return price.toFixed(2);

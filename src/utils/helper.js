@@ -1,12 +1,10 @@
 function debounce(func, wait) {
   let timeout;
-  return function (...args) {
+  return function wrapper(...args) {
     const context = this;
     clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      return func.apply(context, args);
-    }, wait);
+    timeout = setTimeout(() => func.apply(context, args), wait);
   };
 }
 
-export { debounce };
+export default { debounce };
