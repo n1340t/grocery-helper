@@ -20,9 +20,10 @@ export default class Calculator extends Component {
     const price = e.target.value;
     this.onChangeInputPrice(name, price);
   }
+
   onChangeInputPrice(name, price) {
     if (name === '$ per lb') {
-      //set new state of state price lb
+      // set new state of state price lb
       this.setState({
         price: {
           lb: price,
@@ -38,12 +39,14 @@ export default class Calculator extends Component {
       });
     }
   }
+
   convertPrice(name, price) {
     if (name === '$ per lb') {
       return (price * this.constLbAndKg).toPrecision(3);
     }
     return (price / this.constLbAndKg).toPrecision(3);
   }
+
   render() {
     return (
       <div className='grocery-row'>

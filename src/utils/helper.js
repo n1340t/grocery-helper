@@ -7,4 +7,4 @@ function debounce(func, wait) {
   };
 }
 
-export default { debounce };
+export default debounce;

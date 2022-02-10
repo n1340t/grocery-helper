@@ -12,7 +12,7 @@ module.exports = merge(common, {
   devtool: 'eval-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
-    //inline is true by default,
+    // inline is true by default,
     hot: true,
     open: true,
     overlay: {

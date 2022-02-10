@@ -36,6 +36,7 @@ export default class GroceryHelper extends Component {
     });
     this.textInput.value = '';
   }
+  
   deleteCalculator(identifier) {
     this.setState((prevState) => {
       return {
@@ -45,6 +46,7 @@ export default class GroceryHelper extends Component {
       };
     });
   }
+
   render() {
     const calculators = this.state.calculator.map((calc) => {
       return (
@@ -58,7 +60,7 @@ export default class GroceryHelper extends Component {
     });
     return (
       <React.Fragment>
-        <h2>Grocery Helper</h2>
+        <h2>Grocery Helper 123</h2>
         <form onSubmit={this.addNewCalculator}>
           <input
             className='padding'
