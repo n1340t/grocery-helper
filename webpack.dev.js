@@ -7,17 +7,21 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devtool: 'eval-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+    },
     // inline is true by default,
     hot: true,
     open: true,
-    overlay: {
-      warnings: true,
-      errors: true,
+    client: {
+      overlay: {
+        warnings: true,
+        errors: true,
+      },
     },
   },
 });

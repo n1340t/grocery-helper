@@ -29,50 +29,44 @@ export default class GroceryHelper extends Component {
       name: this.textInput.value,
       key: Date.now(),
     };
-    this.setState((prevState) => {
-      return {
+    this.setState((prevState) => ({
         calculator: prevState.calculator.concat(calc),
-      };
-    });
+      }));
     this.textInput.value = '';
   }
   
   deleteCalculator(identifier) {
-    this.setState((prevState) => {
-      return {
+    this.setState((prevState) => ({
         calculator: prevState.calculator.filter(
           (calc) => calc.key !== identifier
         ),
-      };
-    });
+      }));
   }
 
   render() {
-    const calculators = this.state.calculator.map((calc) => {
-      return (
+    const calculators = this.state.calculator.map((calc) => (
         <CalculatorV2
           key={calc.key}
           identifier={calc.key}
           title={calc.name}
           handleClickDelete={this.deleteCalculator}
         />
-      );
-    });
+      ));
     return (
-      <React.Fragment>
-        <h2>Grocery Helper 123</h2>
+      <>
+        <h2>Grocery Helper 1323222</h2>
         <form onSubmit={this.addNewCalculator}>
           <input
             className='padding'
             placeholder="Enter item's name"
             ref={this.setTextInputRef}
-          ></input>
+           />
           <button className='padding btn--submit__margin' type='submit'>
             Add
           </button>
           {calculators}
         </form>
-      </React.Fragment>
+      </>
     );
   }
 }
